@@ -32,7 +32,9 @@ const Dialog = (props: Props) => {
     if (mergedProps.isOpen) {
       dialogRef.current?.showModal()
       document.body.classList.add("modal--open")
+      dialogRef.current?.classList.remove("is--hidden")
     } else {
+      dialogRef.current?.classList.add("is--hidden")
       dialogRef.current?.close()
       document.body.classList.remove("modal--open")
     }

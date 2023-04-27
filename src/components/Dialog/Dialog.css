@@ -2,12 +2,39 @@ body.modal--open {
   overflow: hidden;
 }
 
+@-webkit-keyframes dialogFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes dialogFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 dialog.dialog {
   width: 400px;
   padding: 0;
   border: none;
   box-sizing: border-box;
   border-radius: var(--radius-normal);
+  pointer-events: none;
+}
+
+dialog.dialog[open] {
+  -webkit-animation: dialogFadeIn 0.5s ease normal;
+}
+
+dialog.dialog.is--hidden {
+  -webkit-animation: dialogFadeOut 0.5s ease normal;
 }
 
 dialog.dialog::backdrop {
