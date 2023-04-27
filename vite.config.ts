@@ -8,8 +8,5 @@ export default defineConfig(() => {
     test: {
       setupFiles: [".src/setupTests.ts"],
     },
-    before: () => {
-      console.log("here")
-    },
   }
 })
