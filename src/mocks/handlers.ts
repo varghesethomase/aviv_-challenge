@@ -2,10 +2,14 @@
 import {rest} from "msw"
 import {API_BASE_URL} from "../configs"
 export const handlers = [
-  rest.post(`${API_BASE_URL}/login`, (_req, res, ctx) => {
+  rest.get(`${API_BASE_URL}/filters`, (_req, res, ctx) => {
+    console.log("in the server")
     return res(
       ctx.json({
-        isAuthenticated: true,
+        name: "",
+        description: "",
+        value: "",
+        type: "",
       })
     )
   }),
