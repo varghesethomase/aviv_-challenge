@@ -1,0 +1,22 @@
+body.modal--open {
+  overflow: hidden;
+}
+
+dialog.dialog {
+  width: 400px;
+  padding: 0;
+  border: none;
+  box-sizing: border-box;
+  border-radius: var(--radius-normal);
+}
+
+dialog.dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+dialog.dialog .dialog__content-wrapper {
+  width: 100%;
+  height: auto;
+  box-sizing: inherit;
+  max-height: calc(100vh - var(--gutter-normal) * 2);
+}

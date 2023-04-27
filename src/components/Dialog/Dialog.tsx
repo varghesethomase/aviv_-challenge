@@ -1,4 +1,4 @@
-import {useEffect, useRef} from "react"
+import {SyntheticEvent, useEffect, useRef} from "react"
 import "./Dialog.css"
 
 interface Props {
@@ -46,26 +46,19 @@ const Dialog = (props: Props) => {
     }
   }
 
-  useEffect(() => {
-    const dialog = dialogRef.current
-    const handleEscKeyPress = (event: Event) => {
-      if (!mergedProps.shouldCloseOnEsc) {
-        event.preventDefault()
-        event.stopPropagation()
-      }
+  const handleCancel = (event: SyntheticEvent<HTMLDialogElement, Event>) => {
+    if (mergedProps.shouldCloseOnEsc) {
+      mergedProps.onClose()
+    } else {
+      event.preventDefault()
     }
-    console.log(dialog)
-    dialog?.addEventListener("cancel", handleEscKeyPress)
-    return () => {
-      dialog?.removeEventListener("cancel", handleEscKeyPress)
-    }
-  }, [mergedProps.shouldCloseOnEsc])
+  }
 
   return (
     <dialog
       ref={dialogRef}
       className={`dialog ${mergedProps.classes}`}
-      onCancel={mergedProps.onClose}
+      onCancel={handleCancel}
       onClick={handleOverlayClick}
     >
       <div className="dialog__content-wrapper" onClick={preventAutoClose}>
