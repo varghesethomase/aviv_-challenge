@@ -1,6 +1,6 @@
 # Filter Modal
 
-The scope of this task was to create a modal with the following features
+The scope of this task was to create a modal with the following features and their implementation status:
 
 - [x] A button is provided.
 - [x] The modal opens when the button is clicked.
@@ -11,3 +11,41 @@ The scope of this task was to create a modal with the following features
 - [x] In mobile view the modal is displayed in fullscreen.(optional)
 - [x] In desktop view the modal has a fixed size.(optional)
 - [x] In desktop view the mod al can be closed with a click outside the modal.
+
+## General project structure:
+
+The project has the following structure:
+| Folder | Purpose  
+| ---------- |:----------------------------------------:|
+| configs | Holds the configs for the project |
+| components | Has the resuable components of the application |
+| hooks | Holds the custom hooks used |
+| mocks | Mocks for both tests and mock server |
+
+## Architecture
+
+The project is scaffolded using [Vite](https://vitejs.dev/) with react and typescript.
+
+The modal is architected using the [dialog](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) element. This allows to use the native browser api to meet this tasks requirements. The choice was also made taking into consideration the aspects of accessibility example focus trapping and more. By using the `showModal` method on the dialog, it helps to announce the content as a dialog, similar to that using `role="dialog"` and also has `aria-modal="true"`. It also adds `inert` attribute to all other contents to ignore the other elements. The modal is developed as a standalone component and hence can be reused.
+
+The dialog component is expected to provide with the bare minimals required for each modal and the contents being rendered are hence passed as children. It also provides a mechanism to customise the styling of the modal by having the ability to pass css classes which would help in overriding the default styles. It also has provides controls with a set of props passed to control the functionality of the modal. The following are the accepted props and their purpose:
+
+| Props                     | Type      |                      Purpose                       |
+| ------------------------- | --------- | :------------------------------------------------: |
+| children                  | ReactNode |               Contents of the modal                |
+| isOpen                    | boolean   |           Flag to show or hide the modal           |
+| shouldCloseOnOverlayClick | boolean   |       Control the modal behavior on clicking       |
+| shouldCloseOnEsc          | boolean   | Control the modal behavior on pressing the esc key |
+| classes                   | string    |           CSS classes to ustomise styles           |
+
+### Testing
+
+For testing, vitest is used as the test runner. This comes with a lot of advantages over Jest by allowing to reuse the Vite.js configurations and not needing to provide custom configurations only for testing. Together with the same, [Testing Library](https://testing-library.com/docs/react-testing-library/api/) is used to perform integration testing. To accomodate cases where API calls are involved, [MSW](https://mswjs.io/) is also integrated.
+
+### Additional considerations
+
+I had assumed that in a real world scenario the filters should be configurable. And hence the data comes from an API. To accomodate these cases, I have used [React Query](https://tanstack.com/query/v5) together with [React Query Kit](https://tanstack.com/query/v4/docs/react/community/liaoliao666-react-query-kit) to build reusable hooks for fetching the data.
+
+## Other take aways
+
+When opening the modal, the focus goes to the only button at the bottom of the screen and is expected as the focus is trapped.
