@@ -14,14 +14,14 @@ export enum InputTypes {
   Email = "email",
 }
 
-const useFetchFilters = createQuery<Response, null, Error>({
-  primaryKey: "http://filters",
-  queryFn: ({queryKey: [primaryKey]}: {queryKey: [string, null]}) => {
+const useFetchFilters = createQuery<Response, void, Error>({
+  primaryKey: `${API_BASE_URL}/filters`,
+  queryFn: ({queryKey: [primaryKey]}: {queryKey: [string]}) => {
     return fetch(primaryKey)
       .then((res) => res.json())
       .catch((err) => err)
   },
-  suspense: false,
+  suspense: true,
 })
 
 export {useFetchFilters}

@@ -11,11 +11,9 @@ if (import.meta.env.DEV) {
   browser.start()
 }
 
-const variables = {scope: ""}
-
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const {data} = useFetchFilters({variables, suspense: true})
+  const {data} = useFetchFilters({suspense: true})
   const handleModalClose = () => {
     setIsModalOpen(false)
   }
