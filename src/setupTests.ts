@@ -11,10 +11,10 @@ global.Headers = Headers
 global.Request = Request
 global.Response = Response
 
-beforeAll(() =>
+beforeAll(() => {
   server.listen({
     onUnhandledRequest: "error",
   })
-)
+})
 afterAll(() => server.close())
 afterEach(() => server.resetHandlers())
