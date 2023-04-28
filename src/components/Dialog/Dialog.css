@@ -16,35 +16,40 @@ body.dialog--open {
   }
 }
 
-dialog.dialog {
+.dialog {
   width: 400px;
   padding: 0;
   border: none;
   box-sizing: border-box;
   border-radius: var(--radius-normal);
-  pointer-events: none;
   animation: none;
 }
 
-dialog.dialog[open] {
+.dialog[open] {
   animation: fade-in 0.5s ease normal;
 }
 
-dialog.dialog::backdrop {
+.dialog::backdrop {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-dialog.dialog[open] {
+.dialog[open] {
   animation: fade-in 0.5s ease normal;
 }
 
-dialog.dialog.dialog--is-hidden {
+.dialog.dialog--is-hidden {
   animation: fade-out 0.5s ease normal;
 }
 
-dialog.dialog .dialog__content-wrapper {
+.dialog .dialog__content-wrapper {
   width: 100%;
   height: auto;
   box-sizing: inherit;
   max-height: calc(100vh - var(--gutter-normal) * 2);
+  display: flex;
+}
+
+.dialog .dialog__content {
+  display: flex;
+  flex-direction: column;
 }
