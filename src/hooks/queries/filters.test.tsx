@@ -1,3 +1,5 @@
+// @vitest-environment jsdom
+
 import {renderHook, waitFor} from "@testing-library/react"
 import {useFetchFilters} from "./filters"
 import {describe, expect, it} from "vitest"
