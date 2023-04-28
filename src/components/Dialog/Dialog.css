@@ -2,7 +2,7 @@ body.dialog--open {
   overflow: hidden;
 }
 
-@keyframes show-backdrop {
+@keyframes fade-in {
   from {
     opacity: 0;
   }
@@ -10,7 +10,7 @@ body.dialog--open {
     opacity: 1;
   }
 }
-@keyframes hide-backdrop {
+@keyframes fade-out {
   to {
     opacity: 0;
   }
@@ -27,19 +27,19 @@ dialog.dialog {
 }
 
 dialog.dialog[open] {
-  animation: show-backdrop 0.3s ease normal;
+  animation: fade-in 0.5s ease normal;
 }
 
 dialog.dialog::backdrop {
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 dialog.dialog[open] {
-  animation: show-backdrop 0.3s ease normal;
+  animation: fade-in 0.5s ease normal;
 }
 
 dialog.dialog.dialog--is-hidden {
-  animation: hide-backdrop 0.3s ease normal;
+  animation: fade-out 0.5s ease normal;
 }
 
 dialog.dialog .dialog__content-wrapper {

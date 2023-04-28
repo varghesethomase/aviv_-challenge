@@ -39,6 +39,7 @@ const Dialog = (props: Props) => {
   const handleCancel = (event: SyntheticEvent<HTMLDialogElement, Event>) => {
     if (mergedProps.shouldCloseOnEsc) {
       mergedProps.onClose()
+      event.preventDefault()
     } else {
       event.preventDefault()
     }
