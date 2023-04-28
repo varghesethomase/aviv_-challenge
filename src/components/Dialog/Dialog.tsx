@@ -46,14 +46,16 @@ const Dialog = (props: Props) => {
 
   useEffect(() => {
     if (mergedProps.isOpen) {
-      console.log("here")
       dialogRef.current?.showModal()
       document.body.classList.add("dialog--open")
     } else {
       const onAnimationEndHandler = () => {
-        console.log("closing dialog on animation end")
         dialogRef.current?.classList.remove("dialog--is-hidden")
         dialogRef.current?.close()
+        dialogRef.current?.removeEventListener(
+          "animationend",
+          onAnimationEndHandler
+        )
       }
 
       if (document.body.classList.contains("dialog--open")) {
@@ -62,11 +64,6 @@ const Dialog = (props: Props) => {
           onAnimationEndHandler
         )
         dialogRef.current?.classList.add("dialog--is-hidden")
-
-        dialogRef.current?.removeEventListener(
-          "animationend",
-          onAnimationEndHandler
-        )
         document.body.classList.remove("dialog--open")
       }
     }
