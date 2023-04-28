@@ -23,23 +23,23 @@ dialog.dialog {
   box-sizing: border-box;
   border-radius: var(--radius-normal);
   pointer-events: none;
+  animation: none;
 }
 
 dialog.dialog[open] {
-  -webkit-animation: dialogFadeIn 0.3s ease normal;
+  animation: show-backdrop 0.3s ease normal;
 }
 
 dialog.dialog::backdrop {
   background-color: rgba(0, 0, 0, 0.5);
-  -webkit-animation: none;
 }
 
-dialog.dialog[open]::backdrop {
-  -webkit-animation: show-backdrop 0.3s ease normal;
+dialog.dialog[open] {
+  animation: show-backdrop 0.3s ease normal;
 }
 
-dialog.dialog.dialog--is-hidden::backdrop {
-  -webkit-animation: hide-backdrop 0.3s ease normal;
+dialog.dialog.dialog--is-hidden {
+  animation: hide-backdrop 0.3s ease normal;
 }
 
 dialog.dialog .dialog__content-wrapper {
