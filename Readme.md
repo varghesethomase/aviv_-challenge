@@ -48,4 +48,11 @@ I had assumed that in a real world scenario the filters should be configurable. 
 
 ## Other take aways
 
-When opening the modal, the focus goes to the only button at the bottom of the screen and is expected as the focus is trapped.
+<ol>
+  <li>
+    When opening the modal, the focus goes to the only button at the bottom of the screen and is expected as the focus is trapped.
+  </li>
+  <li>
+    Tests fails with <a href="https://github.com/capricorn86/happy-dom">happy-dom</a> when testing react hooks and hence JSDOM had to be used as the testing environment while testing the same. Also in JSDOM testing `dialog` is not yet support. The issue discussing the same could be found <a href="https://github.com/jsdom/jsdom/issues/3294">here</a>. The test environment could be set using `// @vitest-environment jsdom` in the beginning of the test file.
+  </li>
+</ol>
