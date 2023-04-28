@@ -19,6 +19,7 @@ The scope of this task was to create a modal with the following features and the
 | dev      |   Run the application in dev mode    |
 | build    | Build the application for production |
 | test     |      Runs the test using vitest      |
+| coverage |  Runs the tests with test coverage   |
 
 ## General project structure:
 
