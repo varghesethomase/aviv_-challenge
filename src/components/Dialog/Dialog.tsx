@@ -28,23 +28,11 @@ const Dialog = (props: Props) => {
     event.stopPropagation()
   }
 
-  useEffect(() => {
-    if (mergedProps.isOpen) {
-      dialogRef.current?.showModal()
-      document.body.classList.add("modal--open")
-      dialogRef.current?.classList.remove("is--hidden")
-    } else {
-      dialogRef.current?.classList.add("is--hidden")
-      dialogRef.current?.close()
-      document.body.classList.remove("modal--open")
-    }
-  }, [mergedProps.isOpen])
-
   const handleOverlayClick = (event: React.MouseEvent) => {
-    if (!mergedProps.shouldCloseOnOverlayClick) {
-      preventAutoClose(event)
-    } else {
+    if (mergedProps.shouldCloseOnOverlayClick) {
       mergedProps.onClose()
+    } else {
+      preventAutoClose(event)
     }
   }
 
@@ -55,6 +43,34 @@ const Dialog = (props: Props) => {
       event.preventDefault()
     }
   }
+
+  useEffect(() => {
+    if (mergedProps.isOpen) {
+      console.log("here")
+      dialogRef.current?.showModal()
+      document.body.classList.add("dialog--open")
+    } else {
+      const onAnimationEndHandler = () => {
+        console.log("closing dialog on animation end")
+        dialogRef.current?.classList.remove("dialog--is-hidden")
+        dialogRef.current?.close()
+      }
+
+      if (document.body.classList.contains("dialog--open")) {
+        dialogRef.current?.addEventListener(
+          "animationend",
+          onAnimationEndHandler
+        )
+        dialogRef.current?.classList.add("dialog--is-hidden")
+
+        dialogRef.current?.removeEventListener(
+          "animationend",
+          onAnimationEndHandler
+        )
+        document.body.classList.remove("dialog--open")
+      }
+    }
+  }, [mergedProps.isOpen])
 
   return (
     <dialog
