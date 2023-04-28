@@ -1,11 +1,16 @@
 import {afterAll, afterEach, beforeAll} from "vitest"
-import {fetch} from "cross-fetch"
-
 import server from "./mocks/server"
+import {fetch, Headers, Request, Response} from "cross-fetch"
 
-// Add `fetch` polyfill.
 global.fetch = fetch
+global.Headers = Headers
+global.Request = Request
+global.Response = Response
 
-beforeAll(() => server.listen({onUnhandledRequest: "error"}))
+beforeAll(() =>
+  server.listen({
+    onUnhandledRequest: "error",
+  })
+)
 afterAll(() => server.close())
 afterEach(() => server.resetHandlers())
