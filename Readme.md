@@ -12,6 +12,16 @@ The scope of this task was to create a modal with the following features and the
 - [x] In desktop view the modal has a fixed size.(optional)
 - [x] In desktop view the mod al can be closed with a click outside the modal.
 
+## Commands
+
+### Commands used:
+
+| Commands |               Purpose                |
+| -------- | :----------------------------------: |
+| dev      |   Run the application in dev mode    |
+| build    | Build the application for production |
+| test     |      Runs the test using vitest      |
+
 ## General project structure:
 
 The project has the following structure:
