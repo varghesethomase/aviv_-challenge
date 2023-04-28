@@ -1,7 +1,12 @@
 import {createQuery} from "react-query-kit"
 import {API_BASE_URL} from "../../configs"
 
-type Response = {isAuthenticated: boolean}
+export type FilterResponseItem = {
+  name: string
+  description: string
+  filterType: FilterTypes
+  type: InputTypes
+}
 export enum FilterTypes {
   Input = "input",
   Select = "select",
