@@ -14,8 +14,6 @@ The scope of this task was to create a modal with the following features and the
 
 ## Commands
 
-### Commands used:
-
 | Commands |               Purpose                |
 | -------- | :----------------------------------: |
 | dev      |   Run the application in dev mode    |
