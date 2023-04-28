@@ -72,6 +72,7 @@ const Dialog = (props: Props) => {
 
   return (
     <dialog
+      data-testid="dialog"
       ref={dialogRef}
       className={`dialog ${mergedProps.classes}`}
       onCancel={handleCancel}
