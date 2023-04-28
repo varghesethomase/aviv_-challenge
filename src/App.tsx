@@ -8,7 +8,6 @@ import "./App.css"
 
 // Start the mock service worker. Can be removed when replaced with the real server
 // import browser from "./mocks/browser"
-// console.log(import.meta.env)
 // if (import.meta.env.DEV) {
 //   browser.start()
 // }
@@ -79,7 +78,9 @@ function App() {
           </p>
         </div>
         <div className="filter-dialog__footer">
-          <button onClick={handleModalClose}>close modal</button>
+          <button onClick={handleModalClose} data-testid="dialog-close">
+            close modal
+          </button>
         </div>
       </Dialog>
     </>
