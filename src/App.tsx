@@ -1,19 +1,21 @@
-import Dialog from "./components/Dialog/Dialog"
+import {useState} from "react"
 import "normalize.css"
 import "@fontsource/roboto"
+
+import Dialog from "./components/Dialog/Dialog"
+// import {useFetchFilters} from "./hooks/queries/filters"
 import "./App.css"
 
 // Start the mock service worker. Can be removed when replaced with the real server
-import browser from "./mocks/browser"
-import {useFetchFilters} from "./hooks/queries/filters"
-import {useState} from "react"
-if (import.meta.env.DEV) {
-  browser.start()
-}
+// import browser from "./mocks/browser"
+// console.log(import.meta.env)
+// if (import.meta.env.DEV) {
+//   browser.start()
+// }
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const {data} = useFetchFilters({suspense: true})
+  // const {data} = useFetchFilters({suspense: true})
   const handleModalClose = () => {
     setIsModalOpen(false)
   }
